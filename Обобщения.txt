@@ -1,0 +1,33 @@
+Обобщения нужны для того, чтобы можно было не повторять код там, где одни и те же действия производятся с использованием разных типов данных.
+
+using System.Collections.Generic;
+
+public class OrderedPair<TFirst, TSecond>
+{
+    public TFirst first;
+    public TSecond second;
+
+    public OrderedPair(TFirst first, TSecond second)
+    {
+        this.first = first;
+        this.second = second;
+    }
+
+    public override string ToString()
+    {
+        return first + " " + second;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var pair = new OrderedPair<float, string>(1.5f, "string");
+        var pairList = new List<OrderedPair<int, string>>();
+
+        Console.WriteLine(pair);
+        pairList.Add(new OrderedPair<int, string>(2, "Some string"));
+        Console.WriteLine(pairList[0]);
+    }
+}
